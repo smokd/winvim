@@ -1,0 +1,21 @@
+[submodule "sources_non_forked/Deliminate"]
+	path = sources_non_forked/Deliminate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "sources_non_forked/SingleCompile"]
+	path = sources_non_forked/SingleCompile
+	url = https://github.com/xuhdev/SingleCompile.git
+[submodule "sources_non_forked/Jedi"]
+	path = sources_non_forked/Jedi
+	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "sources_non_forked/OmniCharp"]
+	path = sources_non_forked/OmniCharp
+	url = https://github.com/nosami/Omnisharp
+[submodule "sources_non_forked/Neocomplete"]
+	path = sources_non_forked/Neocomplete
+	url = https://github.com/Shougo/neocomplete.vim
+[submodule "sources_non_forked/Clang_Complete"]
+	path = sources_non_forked/Clang_Complete
+	url = https://github.com/Rip-Rip/clang_complete.git
+[submodule "sources_non_forked/vim-colorschemes"]
+	path = sources_non_forked/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes
