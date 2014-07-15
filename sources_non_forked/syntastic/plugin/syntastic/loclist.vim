@@ -20,12 +20,13 @@ function! g:SyntasticLoclist.New(rawLoclist) " {{{2
 
     let newObj._rawLoclist = llist
     let newObj._name = ''
+    let newObj._owner = bufnr('')
 
     return newObj
 endfunction " }}}2
 
 function! g:SyntasticLoclist.current() " {{{2
-    if !exists("b:syntastic_loclist")
+    if !exists("b:syntastic_loclist") || empty(b:syntastic_loclist)
         let b:syntastic_loclist = g:SyntasticLoclist.New([])
     endif
     return b:syntastic_loclist
@@ -45,12 +46,23 @@ function! g:SyntasticLoclist.isEmpty() " {{{2
     return empty(self._rawLoclist)
 endfunction " }}}2
 
+function! g:SyntasticLoclist.isNewer(stamp) " {{{2
+    if !exists("self._stamp")
+        let self._stamp = -1.0
+    endif
+    return self._stamp > a:stamp
+endfunction " }}}2
+
 function! g:SyntasticLoclist.copyRaw() " {{{2
     return copy(self._rawLoclist)
 endfunction " }}}2
 
 function! g:SyntasticLoclist.getRaw() " {{{2
     return self._rawLoclist
+endfunction " }}}2
+
+function! g:SyntasticLoclist.getBuffers() " {{{2
+    return syntastic#util#unique(map(copy(self._rawLoclist), 'str2nr(v:val["bufnr"])') + [self._owner])
 endfunction " }}}2
 
 function! g:SyntasticLoclist.getStatuslineFlag() " {{{2
@@ -116,6 +128,28 @@ endfunction " }}}2
 
 function! g:SyntasticLoclist.setName(name) " {{{2
     let self._name = a:name
+endfunction " }}}2
+
+function! g:SyntasticLoclist.getOwner() " {{{2
+    return self._owner
+endfunction " }}}2
+
+function! g:SyntasticLoclist.setOwner(buffer) " {{{2
+    let self._owner = type(a:buffer) == type(0) ? a:buffer : str2nr(a:buffer)
+endfunction " }}}2
+
+function! g:SyntasticLoclist.deploy() " {{{2
+    call self.setOwner(bufnr(''))
+    let self._stamp = syntastic#util#timestamp()
+    for buf in self.getBuffers()
+        call setbufvar(buf, 'syntastic_loclist', self)
+    endfor
+endfunction " }}}2
+
+function! g:SyntasticLoclist.destroy() " {{{2
+    for buf in self.getBuffers()
+        call setbufvar(buf, 'syntastic_loclist', {})
+    endfor
 endfunction " }}}2
 
 function! g:SyntasticLoclist.decorate(tag) " {{{2
@@ -216,6 +250,7 @@ function! g:SyntasticLoclist.show() " {{{2
                 if strpart(title, 0, 16) ==# ':SyntasticCheck ' ||
                             \ ( (title == '' || title ==# ':setloclist()') && errors == getloclist(0) )
                     call setwinvar(win, 'quickfix_title', ':SyntasticCheck ' . self._name)
+                    call setbufvar(buf, 'syntastic_owner_buffer', self._owner)
                 endif
             endif
         endfor
@@ -226,7 +261,7 @@ endfunction " }}}2
 
 " Non-method functions {{{1
 
-function! g:SyntasticLoclistHide() " {{{2
+function! SyntasticLoclistHide() " {{{2
     call syntastic#log#debug(g:SyntasticDebugNotifications, 'loclist: hide')
     silent! lclose
 endfunction " }}}2

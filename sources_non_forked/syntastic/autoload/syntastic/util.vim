@@ -35,12 +35,12 @@ endfunction " }}}2
 "
 "{'exe': '/usr/bin/perl', 'args': ['-f', '-bar']}
 function! syntastic#util#parseShebang() " {{{2
-    for lnum in range(1,5)
+    for lnum in range(1, 5)
         let line = getline(lnum)
-
         if line =~ '^#!'
-            let exe = matchstr(line, '\m^#!\s*\zs[^ \t]*')
-            let args = split(matchstr(line, '\m^#!\s*[^ \t]*\zs.*'))
+            let line = substitute(line, '\v^#!\s*(\S+/env(\s+-\S+)*\s+)?', '', '')
+            let exe = matchstr(line, '\m^\S*\ze')
+            let args = split(matchstr(line, '\m^\S*\zs.*'))
             return { 'exe': exe, 'args': args }
         endif
     endfor
@@ -88,6 +88,7 @@ endfunction " }}}2
 " strwidth() was added in Vim 7.3; if it doesn't exist, we use strlen()
 " and hope for the best :)
 let s:width = function(exists('*strwidth') ? 'strwidth' : 'strlen')
+lockvar s:width
 
 "print as much of a:msg as possible without "Press Enter" prompt appearing
 function! syntastic#util#wideMsg(msg) " {{{2
@@ -223,6 +224,12 @@ function! syntastic#util#sortLoclist(errors) " {{{2
         call s:setScreenColumn(e)
     endfor
     call sort(a:errors, 's:compareErrorItems')
+endfunction " }}}2
+
+" Return a floating point number, representing the time
+" (hopefully high resolution) since program start
+function! syntastic#util#timestamp() " {{{2
+    return str2float(reltimestr(reltime(g:syntastic_start)))
 endfunction " }}}2
 
 " }}}1
