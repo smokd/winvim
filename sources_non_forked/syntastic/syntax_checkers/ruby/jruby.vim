@@ -20,6 +20,7 @@ set cpo&vim
 
 function! SyntaxCheckers_ruby_jruby_GetLocList() dict
     let makeprg = self.makeprgBuild({
+        \ 'exe_before': (syntastic#util#isRunningWindows() ? '' : 'RUBYOPT='),
         \ 'args': (syntastic#util#isRunningWindows() ? '-T1' : ''),
         \ 'args_after': '-W1 -c' })
 
@@ -32,12 +33,9 @@ function! SyntaxCheckers_ruby_jruby_GetLocList() dict
         \ '%W%f:%l: %m,'.
         \ '%-C%.%#'
 
-    let env = syntastic#util#isRunningWindows() ? {} : { 'RUBYOPT': '' }
-
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat,
-        \ 'env': env })
+        \ 'errorformat': errorformat })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({

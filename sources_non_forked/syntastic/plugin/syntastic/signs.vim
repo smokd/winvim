@@ -42,6 +42,7 @@ function! g:SyntasticSignsNotifier.refresh(loclist) " {{{2
         call self._signErrors(a:loclist)
     endif
     call self._removeSigns(old_signs)
+    let s:first_sign_id = exists('s:next_sign_id') ? s:next_sign_id : 5000
 endfunction " }}}2
 
 " }}}1
@@ -87,29 +88,26 @@ function! g:SyntasticSignsNotifier._signErrors(loclist) " {{{2
     let loclist = a:loclist
     if !loclist.isEmpty()
 
+        " errors some first, so that they are not masked by warnings
         let buf = bufnr('')
-        if !bufloaded(buf)
-            " signs can be placed only in loaded buffers
-            return
-        endif
-
-        " errors come first, so that they are not masked by warnings
         let issues = copy(loclist.errors())
         call extend(issues, loclist.warnings())
         call filter(issues, 'v:val["bufnr"] == buf')
         let seen = {}
 
         for i in issues
-            if i['lnum'] > 0 && !has_key(seen, i['lnum'])
+            if !has_key(seen, i['lnum'])
                 let seen[i['lnum']] = 1
 
-                let sign_severity = i['type'] ==? 'W' ? 'Warning' : 'Error'
-                let sign_subtype = get(i, 'subtype', '')
-                let sign_type = 'Syntastic' . sign_subtype . sign_severity
+                if i['lnum'] > 0
+                    let sign_severity = i['type'] ==? 'W' ? 'Warning' : 'Error'
+                    let sign_subtype = get(i, 'subtype', '')
+                    let sign_type = 'Syntastic' . sign_subtype . sign_severity
 
-                execute "sign place " . s:next_sign_id . " line=" . i['lnum'] . " name=" . sign_type . " buffer=" . i['bufnr']
-                call add(self._bufSignIds(), s:next_sign_id)
-                let s:next_sign_id += 1
+                    execute "sign place " . s:next_sign_id . " line=" . i['lnum'] . " name=" . sign_type . " buffer=" . i['bufnr']
+                    call add(self._bufSignIds(), s:next_sign_id)
+                    let s:next_sign_id += 1
+                endif
             endif
         endfor
     endif

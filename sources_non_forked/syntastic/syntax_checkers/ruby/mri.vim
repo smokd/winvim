@@ -35,7 +35,9 @@ function! SyntaxCheckers_ruby_mri_GetHighlightRegex(i)
 endfunction
 
 function! SyntaxCheckers_ruby_mri_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args_after': '-w -T1 -c' })
+    let makeprg = self.makeprgBuild({
+        \ 'exe_before': (syntastic#util#isRunningWindows() ? '' : 'RUBYOPT='),
+        \ 'args_after': '-w -T1 -c' })
 
     "this is a hack to filter out a repeated useless warning in rspec files
     "containing lines like
@@ -60,12 +62,9 @@ function! SyntaxCheckers_ruby_mri_GetLocList() dict
         \ '%W%f:%l: %m,'.
         \ '%-C%.%#'
 
-    let env = syntastic#util#isRunningWindows() ? {} : { 'RUBYOPT': '' }
-
     return SyntasticMake({
         \ 'makeprg': makeprg,
-        \ 'errorformat': errorformat,
-        \ 'env': env })
+        \ 'errorformat': errorformat })
 endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({

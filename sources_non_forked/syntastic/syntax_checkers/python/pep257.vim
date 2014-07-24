@@ -19,7 +19,8 @@ function! SyntaxCheckers_python_pep257_GetLocList() dict
             \ self.getExecEscaped() . ' --version'), [0, 3])
     endif
 
-    let makeprg = self.makeprgBuild({})
+    let makeprg = self.makeprgBuild({
+        \ 'exe_before': (syntastic#util#isRunningWindows() ? '' : 'TERM=dumb') })
 
     if s:pep257_new
         let errorformat =
@@ -32,12 +33,9 @@ function! SyntaxCheckers_python_pep257_GetLocList() dict
             \ '%+C    %m'
     endif
 
-    let env = syntastic#util#isRunningWindows() ? {} : { 'TERM': 'dumb' }
-
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'env': env,
         \ 'subtype': 'Style',
         \ 'preprocess': 'killEmpty',
         \ 'postprocess': ['compressWhitespace'] })
