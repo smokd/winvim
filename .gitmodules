@@ -22,3 +22,6 @@
 [submodule ".\\sources_non_forked\\vim-dispatch"]
 	path = .\\sources_non_forked\\vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule ".\\sources_non_forked\\Neosnippet"]
+	path = .\\sources_non_forked\\Neosnippet
+	url = https://github.com/Shougo/neosnippet.vim.git
