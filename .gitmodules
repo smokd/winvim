@@ -19,6 +19,9 @@
 [submodule "sources_non_forked/vim-colorschemes"]
 	path = sources_non_forked/vim-colorschemes
 	url = https://github.com/flazz/vim-colorschemes
-[submodule "sources_non_forked\\vim-dispatch"]
-	path = sources_non_forked\\vim-dispatch
+[submodule "sources_non_forked/vim-dispatch"]
+	path = sources_non_forked/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule "sources_non_forked/NeoSnippet"]
+	path = sources_non_forked/NeoSnippet
+	url = https://github.com/Shougo/neosnippet.vim.git
