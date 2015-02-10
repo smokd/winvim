@@ -22,15 +22,3 @@
 [submodule "sources_non_forked/vim-dispatch"]
 	path = sources_non_forked/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule ".\\sources_non_forked\\UltiSnips"]
-	path = .\\sources_non_forked\\UltiSnips
-	url = https://github.com/SirVer/ultisnips.git
-[submodule ".\\sources_non_forked\\PowerlineFonts"]
-	path = .\\sources_non_forked\\PowerlineFonts
-	url = https://github.com/powerline/fonts.git
-[submodule ".\\sources_non_forked\\hask"]
-	path = .\\sources_non_forked\\hask
-	url = https://github.com/raichoo/haskell-vim.git
-[submodule ".\\sources_non_forked\\vim-javascript"]
-	path = .\\sources_non_forked\\vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
