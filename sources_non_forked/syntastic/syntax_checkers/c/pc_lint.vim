@@ -24,6 +24,7 @@ endif
 
 function! SyntaxCheckers_c_pc_lint_GetLocList() dict
     let config = findfile(g:syntastic_pc_lint_config_file, '.;')
+    call self.log('config =', config)
 
     " -hFs1         - show filename, add space after messages, try to make message 1 line
     " -width(0,0)   - make sure there are no line breaks
@@ -62,4 +63,4 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 let &cpo = s:save_cpo
 unlet s:save_cpo
 
-" vim: set et sts=4 sw=4:
+" vim: set sw=4 sts=4 et fdm=marker:
