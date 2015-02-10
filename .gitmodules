@@ -25,6 +25,3 @@
 [submodule ".\\sources_non_forked\\PowerlineFonts"]
 	path = .\\sources_non_forked\\PowerlineFonts
 	url = https://github.com/powerline/fonts.git
-[submodule ".\\sources_non_forked\\UltiSnips"]
-	path = .\\sources_non_forked\\UltiSnips
-	url = https://github.com/SirVer/ultisnips.git
