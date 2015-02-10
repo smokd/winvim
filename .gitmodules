@@ -28,3 +28,6 @@
 [submodule ".\\sources_non_forked\\HaskellVim"]
 	path = .\\sources_non_forked\\HaskellVim
 	url = https://github.com/lukerandall/haskellmode-vim.git
+[submodule ".\\sources_non_forked\\PowerlineFonts"]
+	path = .\\sources_non_forked\\PowerlineFonts
+	url = https://github.com/powerline/fonts.git
