@@ -26,9 +26,9 @@ let g:clang_snippets_engine = 'clang_complete'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Jedi
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:jedi#auto_vim_configuration = 0 
-let g:jedi#popup_select_first = 0 
-let g:jedi#completions_enabled = 0 
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#completions_enabled = 0
 let g:jedi#show_call_signatures = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,8 +49,8 @@ let g:neocomplete#enable_smart_case                     = 1
 let g:neocomplete#manual_completion_start_length        = 0
 let g:neocomplete#sources#syntax#min_keyword_length     = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#auto_completion_start_length          =2
-let g:neocomplete#enable_auto_close_preview             =1
+let g:neocomplete#auto_completion_start_length          = 2
+let g:neocomplete#enable_auto_close_preview             = 1
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
@@ -261,19 +261,24 @@ au BufRead *.markdown setlocal spell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'badwolf'
-"let g:airline_left_sep = '»'
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
+let g:airline_right_sep = '«'
 let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '||'
-"let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -350,7 +355,7 @@ let g:syntastic_check_on_wq = 0
 " => UltiSnips
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:UltiSnipsSnippetsDir        = '~/.vim/snippets/'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 let g:UltiSnipsExpandTrigger='<C-CR>'
 let g:UltiSnipsJumpForwardTrigger='<A-a>'
 let g:UltiSnipsJumpBackwardTrigger='<A-d>'
