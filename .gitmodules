@@ -28,6 +28,3 @@
 [submodule "sources_non_forked/PowerlineFonts"]
 	path = sources_non_forked/PowerlineFonts
 	url = https://github.com/powerline/fonts.git
-[submodule "sources_non_forked/vim-javascript"]
-	path = sources_non_forked/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
