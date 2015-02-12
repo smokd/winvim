@@ -28,3 +28,6 @@
 [submodule ".\\sources_non_forked\\haskel-vim"]
 	path = sources_non_forked\\haskel-vim
 	url = https://github.com/raichoo/haskell-vim.git
+[submodule "sources_non_forked/UltiSnips"]
+	path = sources_non_forked/UltiSnips
+	url = https://github.com/SirVer/ultisnips.git
