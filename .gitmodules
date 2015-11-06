@@ -31,3 +31,15 @@
 [submodule "sources_non_forked/vim-javascript"]
 	path = sources_non_forked/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "sources_non_forked/vim-rails"]
+	path = sources_non_forked/vim-rails
+	url = https://github.com/tpope/vim-rails.git
+[submodule "sources_non_forked/phpcomplete.vim"]
+	path = sources_non_forked/phpcomplete.vim
+	url = https://github.com/shawncplus/phpcomplete.vim.git
+[submodule "sources_non_forked/php.vim"]
+	path = sources_non_forked/php.vim
+	url = https://github.com/StanAngeloff/php.vim.git
+[submodule "wordpress.vim"]
+	path = wordpress.vim
+	url = https://github.com/dsawardekar/wordpress.vim.git

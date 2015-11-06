@@ -10,7 +10,7 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_xml_xmllint_checker")
+if exists('g:loaded_syntastic_xml_xmllint_checker')
     finish
 endif
 let g:loaded_syntastic_xml_xmllint_checker = 1
@@ -24,7 +24,7 @@ set cpo&vim
 
 function! SyntaxCheckers_xml_xmllint_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'args': '--xinclude --postvalid' })
+        \ 'args': '--xinclude --postvalid',
         \ 'args_after': '--noout' })
 
     let errorformat=

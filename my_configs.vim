@@ -241,7 +241,7 @@ let g:pymode_folding = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme desert "monokai,wombat,molokai,badwolf,,xoria256,solarized,codeschool,vividchalk,mophiadark,mdark 
-set gfn=Consolas "Cousine ProgCleanCo
+set gfn=DejaVu_Sans_Mono "Consolas Cousine ProgCleanCo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NerdTree
@@ -283,11 +283,11 @@ let g:airline_symbols.whitespace = 'Ξ'
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OR ELSE just the 81st column of wide lines...
-highlight ColorColumn ctermbg=magenta guibg=#E61F1F
-call matchadd('ColorColumn', '\%81v', 100)
+"highlight ColorColumn ctermbg=magenta guibg=#E61F1F
+"call matchadd('ColorColumn', '\%81v', 100)
 "====[ Make tabs, trailing whitespace, and non-breaking spaces visible ]======
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+"exec set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+"set list
 
 "set transparency=5
 set cursorline  				" highlight current line
@@ -363,4 +363,6 @@ let g:UltiSnipsJumpBackwardTrigger='<A-d>'
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
