@@ -46,3 +46,6 @@
 [submodule "sources_non_forked/vim-haml"]
 	path = sources_non_forked/vim-haml
 	url = https://github.com/tpope/vim-haml.git
+[submodule ".\\sources_non_forked\\vim-ruby"]
+	path = .\\sources_non_forked\\vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
